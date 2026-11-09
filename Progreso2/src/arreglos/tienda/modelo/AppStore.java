@@ -10,6 +10,11 @@ public class AppStore {
         indice = -1;
     }
 
+    public void inicializarDatos(){
+        agregarJuego(new Juego("FIFA2026","Deportes",10,70,50));
+        agregarJuego(new Juego("Roblox","Acción",60,75,60));
+    }
+
     public Juego[] getJuegos() {
         return juegos;
     }
@@ -53,6 +58,26 @@ public class AppStore {
             return 0;
         }
         return 0;
+    }
+
+    public String juegoMasVendido(){
+        String nombre = "";
+        int mayor;
+        if(indice >= 0){
+            nombre = juegos[0].getNombre();
+            mayor = juegos[0].getLicenciasVendidas();
+            for(Juego j : juegos){
+                if(j != null){
+                    if(j.getLicenciasVendidas() > mayor){
+                        mayor = j.getLicenciasVendidas();
+                        nombre = j.getNombre();
+                    }
+                }else{
+                    return nombre;
+                }
+            }
+        }
+        return nombre;
     }
 
 }
